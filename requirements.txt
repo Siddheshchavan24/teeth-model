@@ -1,9 +1,9 @@
-tensorflow==2.10.0
+tensorflow
 torch
 torchvision
 pillow
 numpy
 matplotlib
 seaborn
-scikit-learn==1.0.2
+scikit-learn
 gdown
