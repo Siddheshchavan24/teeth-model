@@ -3,6 +3,7 @@ import numpy as np
 import gdown
 from PIL import Image
 from tensorflow.keras.models import load_model
+import os
 
 # Google Drive file ID
 file_id = "1NWkTQVANbycVLP9Gso11H1vtLiieXQ6-"
@@ -11,7 +12,9 @@ model_path = "teeth_model.h5"
 # Function to download and load model
 @st.cache_resource
 def load_teeth_model():
-    gdown.download(f"https://drive.google.com/uc?id={file_id}", model_path, quiet=False)
+    if not os.path.exists(model_path):  # Avoid downloading repeatedly
+        url = f"https://drive.google.com/uc?export=download&id={file_id}"
+        gdown.download(url, model_path, quiet=False)
     model = load_model(model_path)
     return model
 
